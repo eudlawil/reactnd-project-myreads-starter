@@ -55,7 +55,7 @@ class BooksApp extends React.Component {
             </div>
 
             {shelves.map((shelf, index) => (
-              <DisplayBooks allBooks={this.state.books} shelf={shelf} key={index} />
+              <DisplayBooks allBooks={this.state.books} shelves={shelves} shelf={shelf} key={index} />
             ))}
 
             <div className="open-search">

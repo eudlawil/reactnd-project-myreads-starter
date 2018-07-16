@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 import './App.css';
+import ShelfSelect from './ShelfSelect'
 
 class DisplayBooks extends Component {
   state = {
@@ -8,7 +9,7 @@ class DisplayBooks extends Component {
   };
 
   render() {
-    const { allBooks, shelf } = this.props
+    const { allBooks, shelves, shelf } = this.props
     let books = allBooks.filter(book => book.shelf === shelf.id )
 
     return (
@@ -32,15 +33,9 @@ class DisplayBooks extends Component {
                               backgroundImage: `url(${book.imageLinks.thumbnail})`
                             }}>
                         </div>
-                        <div className="book-shelf-changer">
-                          <select>
-                            <option value="move" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
-                          </select>
-                        </div>
+
+                        <ShelfSelect shelves={shelves} shelf={shelf}/>
+
                       </div>
                       <div className="book-title">{book.title}</div>
                       <div className="book-authors">{book.author}</div>
@@ -68,3 +63,13 @@ export default DisplayBooks;
 //const { books, shelf } = props;
 //"http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api"
 //const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+
+/* <div className="book-shelf-changer">
+<select>
+  <option value="move" disabled>Move to...</option>
+  <option value="currentlyReading">Currently Reading</option>
+  <option value="wantToRead">Want to Read</option>
+  <option value="read" selected>Read</option>
+  <option value="none">None</option>
+</select>
+</div> */
