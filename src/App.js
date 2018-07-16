@@ -49,8 +49,7 @@ class BooksApp extends React.Component {
   }
 
   updateShelf(id, newShelf) {
-    //const index = this.state.books.findIndex(x=> x.id === id);
-    const index = 0;
+    const index = this.state.books.findIndex(x=> x.id === id);
     this.setState(state => ({
       books: [
           ...state.books.slice(0,index),
