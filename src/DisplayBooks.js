@@ -9,7 +9,7 @@ class DisplayBooks extends Component {
   };
 
   render() {
-    const { allBooks, shelves, shelf } = this.props
+    const { allBooks, shelves, shelf, updateShelf } = this.props
     let books = allBooks.filter(book => book.shelf === shelf.id )
 
     return (
@@ -34,7 +34,7 @@ class DisplayBooks extends Component {
                             }}>
                         </div>
 
-                        <ShelfSelect shelves={shelves} shelf={shelf}/>
+                        <ShelfSelect shelves={shelves} shelf={shelf} updateShelf={updateShelf} bookId={book.id}/>
 
                       </div>
                       <div className="book-title">{book.title}</div>
