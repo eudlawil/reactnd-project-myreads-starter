@@ -1,11 +1,12 @@
 import React from 'react'
-//import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import DisplayBooks from './DisplayBooks'
 import SearchPage from './SearchPage'
 
-//const shelves = ['Currently Reading', 'Want to Read', 'Read'];
+
 const shelves = [ { id:'currentlyReading',
                     name: 'Currently Reading'
                   },
@@ -24,25 +25,16 @@ class BooksApp extends React.Component {
     this.state = {
       books: [
   
-      ],
-      /**
-       * TODO: Instead of using this state variable to keep track of which page
-       * we're on, use the URL in the browser's address bar. This will ensure that
-       * users can use the browser's back and forward buttons to navigate between
-       * pages, as well as provide a good URL they can bookmark and share.
-       */
-      showSearchPage: false,
-      lisa: {}
+      ]
     }
     this.updateShelf = this.updateShelf.bind(this)
   }
 
 
 
-  componentDidMount() {
+  componentWillMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
-      console.log(this)
       console.log(books)
     })
 
@@ -50,27 +42,38 @@ class BooksApp extends React.Component {
 
   updateShelf(id, newShelf) {
     const index = this.state.books.findIndex(x=> x.id === id);
-    this.setState(state => ({
-      books: [
-          ...state.books.slice(0,index),
-          Object.assign({}, state.books[index], newShelf ),
-          ...state.books.slice(index+1)
-      ]
-    }))
+    console.log(this.state.books[index], {id: id}, newShelf.shelf)
+    BooksAPI.update({id: id}, newShelf.shelf).then(()=> {
+        BooksAPI.getAll().then((books) => {
+          this.setState({ books })
+        })
+    } )
   }
 
+  // Leaving this here so I have an example of updating
+  // local state that's an array of objects
+  //
   // updateShelf(id, newShelf) {
-  //   console.log( this, id, newShelf)
-  //   this.setState(state  => ({ lisa: newShelf }));
+  //   const index = this.state.books.findIndex(x=> x.id === id);
+  //   this.setState(state => ({
+  //     books: [
+  //         ...state.books.slice(0,index),
+  //         Object.assign({}, state.books[index], newShelf ),
+  //         ...state.books.slice(index+1)
+  //     ]
+  //   }))
   // }
 
 
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchPage />
-        ) : (
+
+        <Route path='/search' render={({ history }) => (
+          <SearchPage myBooks={this.state.books} shelves={shelves} updateShelf={this.updateShelf} />
+        )}/> 
+
+        <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -81,10 +84,11 @@ class BooksApp extends React.Component {
             ))}
 
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              <Link to='/search'>Add a book</Link>
             </div>
           </div>
-        )}
+        )}/> 
+
       </div>
     )
   }
