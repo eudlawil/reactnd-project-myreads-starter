@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './App.css';
 import * as BooksAPI from './BooksAPI'
 import ShelfSelect from './ShelfSelect'
@@ -108,42 +108,9 @@ class SearchPage extends Component {
 }
 
 SearchPage.propTypes = {
- // messages: PropTypes.array.isRequired,
- // user: PropTypes.object.isRequired,
+  myBooks: PropTypes.array.isRequired,
+  shelves: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired
 };
 
 export default SearchPage;
-
-// backgroundImage: `url(${book.imageLinks.thumbnail})`
-//const { books, shelf } = props;
-
-            /*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */
-
-
-          //  {this.state.books.map((book, index) => (
-          //   <li key={index} >
-          //     <div className="book">
-          //       <div className="book-top">
-          //         <div className="book-cover" style={
-          //             {
-          //               width: 128,
-          //               height: 193,
-          //               backgroundImage: `url(${book.imageLinks.thumbnail})`
-          //             }}>
-          //         </div>
-
-          //         <ShelfSelect shelves={shelves} shelf={book.shelf} updateShelf={updateShelf} bookId={book.id}/>
-
-          //       </div>
-          //       <div className="book-title">{book.title}</div>
-          //       <div className="book-authors">{book.author}</div>
-          //     </div>
-          //   </li>
-          // ))}
