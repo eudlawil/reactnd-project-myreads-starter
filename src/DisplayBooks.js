@@ -7,6 +7,8 @@ class DisplayBooks extends Component {
 
   render() {
     const { allBooks, shelves, shelf, updateShelf } = this.props
+
+    // Only show books for this shelf
     let books = allBooks.filter(book => book.shelf === shelf.id )
 
     return (

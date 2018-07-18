@@ -30,6 +30,7 @@ class BooksApp extends React.Component {
     this.updateShelf = this.updateShelf.bind(this)
   }
 
+  // Pull all the books into the master state
   componentWillMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
@@ -37,6 +38,7 @@ class BooksApp extends React.Component {
 
   }
 
+  // method that is passed into children to update a book's shelf
   updateShelf(id, newShelf) {
     BooksAPI.update({id: id}, newShelf.shelf).then(()=> {
         BooksAPI.getAll().then((books) => {
@@ -59,6 +61,7 @@ class BooksApp extends React.Component {
   //   }))
   // }
 
+  // This page calls DisplayBooks once for each shelf
   render() {
     return (
       <div className="app">

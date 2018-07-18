@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+// Component that handles the shelf options list and uses the 
+// updateShelf method to change the book's assigned shelf in 
+// the top level state.
 class ShelfSelect extends Component {
   handleChange = (e) => {
     e.preventDefault();

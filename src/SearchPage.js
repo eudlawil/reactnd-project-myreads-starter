@@ -12,6 +12,8 @@ class SearchPage extends Component {
     query: ''
   };
 
+  // Function that runs after each change of the search input
+  // update the local state of books 
   handleChange = (e) => {
     e.preventDefault();
     this.setState({query: e.target.value})
