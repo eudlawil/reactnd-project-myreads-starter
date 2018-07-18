@@ -24,7 +24,7 @@ class BooksApp extends React.Component {
     super(props);
     this.state = {
       books: [
-  
+
       ]
     }
     this.updateShelf = this.updateShelf.bind(this)
@@ -71,7 +71,7 @@ class BooksApp extends React.Component {
 
         <Route path='/search' render={({ history }) => (
           <SearchPage myBooks={this.state.books} shelves={shelves} updateShelf={this.updateShelf} />
-        )}/> 
+        )}/>
 
         <Route exact path='/' render={() => (
           <div className="list-books">
@@ -87,7 +87,7 @@ class BooksApp extends React.Component {
               <Link to='/search'>Add a book</Link>
             </div>
           </div>
-        )}/> 
+        )}/>
 
       </div>
     )

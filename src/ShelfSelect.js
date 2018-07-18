@@ -12,10 +12,10 @@ class ShelfSelect extends Component {
 
 
   render() {
-    const { shelves, shelf } = this.props;  
+    const { shelves, shelfId } = this.props;
     return (
       <div className="book-shelf-changer">
-          <select value={shelf.id} onChange={this.handleChange} >
+          <select value={shelfId} onChange={this.handleChange} >
               <option value="move" disabled>Move to...</option>
               {shelves.map((s, index) => {
                 return (
@@ -31,7 +31,7 @@ class ShelfSelect extends Component {
 
 ShelfSelect.propTypes = {
   shelves: PropTypes.array.isRequired,
-  shelf:   PropTypes.object.isRequired,
+  shelfId:   PropTypes.string.isRequired,
 };
 
 export default ShelfSelect;

@@ -34,7 +34,7 @@ class DisplayBooks extends Component {
                             }}>
                         </div>
 
-                        <ShelfSelect shelves={shelves} shelf={shelf} updateShelf={updateShelf} bookId={book.id}/>
+                        <ShelfSelect shelves={shelves} shelfId={shelf.id} updateShelf={updateShelf} bookId={book.id}/>
 
                       </div>
                       <div className="book-title">{book.title}</div>
