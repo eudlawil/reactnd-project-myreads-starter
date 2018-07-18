@@ -14,12 +14,10 @@ class SearchPage extends Component {
 
   handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     this.setState({query: e.target.value})
     BooksAPI.search(e.target.value).then((books) => {
 
       if(books && books.length>0) {
-        console.log(books)
         this.setState({ books })
       }
       else {
@@ -64,7 +62,7 @@ class SearchPage extends Component {
                 })
               }
               let myShelf = 'none';
-              if (myBook[0] && typeof myBook[0].shelf != 'undefined') {
+              if (myBook[0] && typeof myBook[0].shelf !== 'undefined') {
                 myShelf = myBook[0].shelf;
               }
 

@@ -30,19 +30,14 @@ class BooksApp extends React.Component {
     this.updateShelf = this.updateShelf.bind(this)
   }
 
-
-
   componentWillMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
-      console.log(books)
     })
 
   }
 
   updateShelf(id, newShelf) {
-    const index = this.state.books.findIndex(x=> x.id === id);
-    console.log(this.state.books[index], {id: id}, newShelf.shelf)
     BooksAPI.update({id: id}, newShelf.shelf).then(()=> {
         BooksAPI.getAll().then((books) => {
           this.setState({ books })
@@ -63,7 +58,6 @@ class BooksApp extends React.Component {
   //     ]
   //   }))
   // }
-
 
   render() {
     return (

@@ -4,9 +4,6 @@ import './App.css';
 import ShelfSelect from './ShelfSelect'
 
 class DisplayBooks extends Component {
-  state = {
-    //messages: [], //will hold this --> {usermame: 'Amy', text: 'a'}
-  };
 
   render() {
     const { allBooks, shelves, shelf, updateShelf } = this.props
